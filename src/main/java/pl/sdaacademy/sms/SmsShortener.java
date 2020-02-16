@@ -6,9 +6,10 @@ public class SmsShortener {
 
         StringBuilder shortenedSmsBuilder = new StringBuilder();
         for (String word : words) {
-            if (!word.isBlank()) {
-                String capitalLetter = word.substring(0, 1).toUpperCase();
-                String capitalizedWord = capitalLetter + word.substring(1);
+            String trimmedWord = word.trim();
+            if (!trimmedWord.isEmpty()) {
+                String capitalLetter = trimmedWord.substring(0, 1).toUpperCase();
+                String capitalizedWord = capitalLetter + trimmedWord.substring(1);
                 shortenedSmsBuilder.append(capitalizedWord);
             }
         }

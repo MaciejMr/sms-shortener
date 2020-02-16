@@ -48,6 +48,19 @@ class SmsShortenerTest {
     }
 
     @Test
+    void shouldShortenSmsWith() {
+        //given
+        String longSms = "Ala    ma\t kota";
+        String expectedOutput = "AlaMaKota";
+
+        //when
+        String shortenedSms = smsShortener.shortenSms(longSms);
+
+        //then
+        assertEquals(expectedOutput, shortenedSms);
+    }
+
+    @Test
     void shouldShortenBlankSms() {
         //given
         String longSms = "   \t";
