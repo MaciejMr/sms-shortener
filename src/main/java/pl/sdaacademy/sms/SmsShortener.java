@@ -1,7 +1,29 @@
 package pl.sdaacademy.sms;
 
 public class SmsShortener {
-    public String shortenSms(String longSms) {
+    private final String longSms;
+
+    public SmsShortener(String longSms) {
+        this.longSms = longSms;
+    }
+
+    public int countMessages() {
+        String shortenedSms = shortenSms();
+        if (shortenedSms.isBlank()) {
+            return 0;
+        }
+        int fullMessagesCount = shortenedSms.length() / 160;
+        if (hasRemainingCharacters(shortenedSms)) {
+            return fullMessagesCount + 1;
+        }
+        return fullMessagesCount;
+    }
+
+    private boolean hasRemainingCharacters(String shortenedSms) {
+        return shortenedSms.length() % 160 != 0;
+    }
+
+    public String shortenSms() {
         String[] words = longSms.split(" ");
 
         StringBuilder shortenedSmsBuilder = new StringBuilder();
